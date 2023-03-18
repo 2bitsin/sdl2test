@@ -1,8 +1,10 @@
+#define SDL_MAIN_HANDLED
 #include <SDL.h>
 
 #include <stdlib.h>
 
-int SDL_main(int argc,char** argv)
+
+int main(int argc,char** argv)
 {
   SDL_Window* window = NULL;
   SDL_Event event;
@@ -10,7 +12,7 @@ int SDL_main(int argc,char** argv)
   SDL_Init(SDL_INIT_EVERYTHING);
   atexit(&SDL_Quit);
 
-  window = SDL_CreateWindow(NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow(NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
 
   for (;;)
   {
