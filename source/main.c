@@ -12,8 +12,12 @@ int main(int argc,char** argv)
   SDL_Init(SDL_INIT_EVERYTHING);
   atexit(&SDL_Quit);
 
-  window = SDL_CreateWindow(NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
+  SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 
+  window = SDL_CreateWindow("Hello !", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
+  if (!window) {
+    return -1;
+  }
   for (;;)
   {
     if (SDL_PollEvent(&event))
@@ -24,7 +28,8 @@ int main(int argc,char** argv)
       }
       continue;
     }
-    SDL_UpdateWindowSurface(window);
+    if (SDL_UpdateWindowSurface(window))
+      break;
   }
 
   SDL_DestroyWindow(window);
