@@ -1,9 +1,8 @@
-project(SDL2_test)
+cmake_minimum_required(VERSION 3.22)
+project(chip8)
 
 add_subdirectory(SDL2)
-
-add_executable(SDL2_test main.cpp)
-
-target_link_libraries(SDL2_test SDL2 SDL2main)
-
-install(TARGETS SDL2_test DESTINATION ${CMAKE_SOURCE_DIR}/run_bin_run)
+include_directories($SDL2_INCLUDE_DIRS)
+add_executable(chip8 source/main.c)
+target_link_libraries(chip8 PUBLIC SDL2::SDL2-static SDL2::SDL2main)
+install(TARGETS SDL2 chip8 DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
